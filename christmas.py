@@ -24,13 +24,13 @@ def twinkle(led_day):
         on = datetime.datetime.combine(now.date(), turn_on_time)
         off = datetime.datetime.combine(now.date(), turn_off_time)
 
-        value = random() if led_day <= day else 0
+        value = random() if ((led_day <= day and month == 12) or (month == 1)) else 0
 
         # Is it Advent or Christmas?
         if (month == 12) or (month == 1 and day <= 5):
             
             # Fully lit tree
-            if (month == 12 and day >= 25) or (month == 1 and day <= 5):
+            if (month == 12 and day >= 25) or (month == 1 and day <= 6): # Or Jan 5th. There's disagreement.
                 if led_day == 25:
                     value = 1.0 # Light the star constantly
                 else:
