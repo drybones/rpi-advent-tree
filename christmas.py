@@ -26,14 +26,19 @@ def twinkle(led_day):
 
         value = random() if led_day <= day else 0
 
-        if month == 12:
-            if day >= 25:
+        # Is it Advent or Christmas?
+        if (month == 12) or (month == 1 and day <= 5):
+            
+            # Fully lit tree
+            if (month == 12 and day >= 25) or (month == 1 and day <= 5):
                 if led_day == 25:
                     value = 1.0 # Light the star constantly
                 else:
                     value *= 0.3 # Dim the brighter red LEDs to allow the star to shine
+
+            # Partially lit tree
             else:
-                value *= 0.6 # Dim the LEDs somewhat even when the start isn't lit
+                value *= 0.6 # Dim the LEDs somewhat even when the star isn't lit
 
             # Turn the lights off overnight, fading in and out
             if now < on or now > off:
